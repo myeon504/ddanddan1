@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="https://use.typekit.net/von7cyo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DDANDDAN</title>
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            animation-duration: 1s;
+        }
+        .dance-container{
+            z-index: 1;
+            width: 100vw;
+            height: 100vh;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            overflow: hidden;}
+        .button-background{
+            z-index: 2;
+            height: 25vh;
+            width: 100vw;
+            position: absolute;
+            bottom: 0%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 26.32%, rgba(0, 0, 0, 0) 100%);;
+        }
+        .button-container{
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            width: 98.958333%;
+            height: 14vh;
+            position: absolute;
+            bottom: 5.55%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            display: flex;
+        }
+        .guideText{
+        z-index: 3;
+        display: block;
+        position: absolute;
+        top: 8%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        }
+
+        .cameraButton{
+            z-index: 3;
+            display: block;
+            position: absolute;
+            top: 9%;
+            right: 3%;
+            transform: translate(0%, -50%);
+        }
+
+        .backButton{
+            display: block;
+            position: absolute;
+            top: 9%;
+            left: 3%;
+            transform: translate(0%, -50%);
+            cursor: pointer;
+        }
+
+        #mainBack{
+            z-index: 3;
+        }
+
+        #subBack{
+            z-index: 15;
+        }
+
+        .mirror1{
+            display: none;
+        }
+
+        .mirror2{
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            overflow: hidden;
+            z-index: 8;
+        }
+
+        .info-container{
+            z-index: 6;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100%;
+            position: absolute;
+            overflow: hidden;
+        }
+        .timer{
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            overflow: hidden;
+            z-index: 5;
+        }
+        .loop1{
+            display: none;
+        }
+        .arrow-container{
+            overflow: hidden;
+            z-index: 6;
+            width: 88vw;
+            top: 60%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            display: flex;
+        }
+        .arrowR{
+            margin-left: auto;
+        }
+
+        .loop2{
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            overflow: hidden;
+            z-index: 8;
+        }
+
+        .speed1{
+            display: none;
+        }
+        .speed2{
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            overflow: hidden;
+            z-index: 8;
+        }
+        .mirrorText{
+            z-index: 6;
+            position: absolute;
+            top: 8%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .loopText{
+            z-index: 6;
+            position: absolute;
+            top: 8%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .speedText{
+            z-index: 6;
+            position: absolute;
+            top: 8%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .timerText{
+            z-index: 6;
+            position: absolute;
+            top: 8%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .button-box{
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        .button-box img{
+            width: 80%;}
+        
+        .bluredImg{
+            width: 100vw;
+            height: 100vh;
+            z-index: 3;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .bluredImg img{width: 100%;}
+
+        .blackscreen{
+            width: 100vw;
+            height: 100vh;
+            backdrop-filter: blur(30px);
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 4;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+        }
+      
+    .slider-container{
+        width: 95vw;
+        height: 13vh;
+        z-index: 5;
+        position: absolute;
+        vertical-align: middle;
+        bottom: 10%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        }        
+    
+    .speed-container{
+        width: 80vw;
+        height: auto;
+        z-index: 5;
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        }
+
+    .slider {
+    position: relative;
+    z-index: 6;
+    height: 20px;
+    }
+
+    .pointL{
+        z-index: 9;
+        position: absolute;
+        left: 30%;
+        top: 50%;
+        transform: translate(0%, -50%);
+    }
+
+    .pointR{
+        z-index: 9;
+        position: absolute;
+        right: 30%;
+        top: 50%;
+        transform: translate(0%, -50%);
+    }
+
+    .slider > .track {
+    position: absolute;
+    z-index: 7;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 10px;
+    background-color: #9C9C9C;
+    }
+
+    .slider > .range {
+    position: absolute;
+    z-index: 8;
+    left: 0%;
+    right: 0%;
+    top: 0;
+    bottom: 0;
+    border-radius: 10px;
+    background-color: #ffffff;
+    }
+
+    .slider > .thumb {
+    position: absolute;
+    z-index: 10;
+    width: auto;
+    height: auto;
+    }
+
+    .slider > .thumb.left {
+    left: 0;
+    top: 50%;
+    transform: translate(0%, -50%);
+    }
+    .slider > .thumb.right {
+    right: 0%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    }
+
+    .speedSlider {
+    position: relative;
+    z-index: 6;
+    height: 40px;
+    }
+
+    .speedSlider > .track {
+    position: absolute;
+    z-index: 7;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(speed_bar.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+
+    .speedSlider > .thumb {
+    position: absolute;
+    z-index: 10;
+    width: 13vw;
+    height: auto;
+    left: 47.3684%;
+    top: 65px;
+    transform: translate(-50%, -100%);
+    }
+
+    .speedSlider > .thumb p {
+    position: absolute;
+    z-index: 12;
+    left: 50%;
+    top: 25%;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    font-size: 8em;
+    font-family: futura-pt-condensed, sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    }
+
+    .speedButton{
+        cursor: pointer;
+        z-index: 12;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 80%;
+    }
+
+    input[id="input-left"][type="range"] {
+    position: absolute;
+    pointer-events: none;
+    -webkit-appearance: none;
+    z-index: 7;
+    height: 20px;
+    width: 100%;
+    opacity: 0;
+    }
+
+    input[id="input-left"][type="range"]::-webkit-slider-thumb {
+    pointer-events: all;
+    width: 112px;
+    height: 152px;
+    border-radius: 0;
+    border: 0 none;
+    background-color: red;
+    cursor: pointer;
+    -webkit-appearance: none;
+    }
+
+    input[id="input-right"][type="range"] {
+    position: absolute;
+    pointer-events: none;
+    -webkit-appearance: none;
+    z-index: 7;
+    height: 20px;
+    width: 100%;
+    opacity: 0;
+    }
+
+    input[id="input-right"][type="range"]::-webkit-slider-thumb {
+    pointer-events: all;
+    width: 112px;
+    height: 152px;
+    border-radius: 0;
+    border: 0 none;
+    background-color: red;
+    cursor: pointer;
+    -webkit-appearance: none;
+    }
+    
+    input[id="speed_range"][type="range"] {
+    position: absolute;
+    pointer-events: none;
+    -webkit-appearance: none;
+    z-index: 7;
+    height: 20px;
+    width: 100%;
+    bottom: 5%;
+    opacity: 0;
+    }
+
+    input[id="speed_range"][type="range"]::-webkit-slider-thumb {
+    pointer-events: all;
+    width: 100px;
+    height: 100px;
+    border-radius: 0;
+    border: 0 none;
+    background-color: red;
+    cursor: pointer;
+    -webkit-appearance: none;
+    }
+
+    #dance-video{
+        position: relative; 
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        top: 50%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;}
+        
+    #loopVideo{
+        position: relative; 
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        top: 50%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;} 
+    
+    #mirrorInfo{
+        position: relative; 
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        top: 50%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;} 
+        
+    #mirrorVideo{
+        position: relative; 
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        top: 50%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;} 
+    
+    #timerVideo{
+        position: relative; 
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        top: 50%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;} 
+
+    #speedVideo{
+        position: relative; 
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        top: 50%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+        } 
+
+    </style>
+</head>
+<body>
+    <div class="dance-container">
+    <video id="dance-video" autoplay loop playsinline muted>
+        <source src="lovedive_main.mp4" type="video/mp4">
+    </video>
+    </div>
+    <div class="guideText">
+        <img src="guidetext.svg">
+    </div>
+    <div class="backButton" id="mainBack" onclick="location.href='index.html'">
+        <img src="back_button.svg">
+    </div>
+    <div class="cameraButton" id="camera">
+        <img src="cam_button.svg">
+    </div>
+    <div class="button-background">
+    </div>
+    <div class="button-container" id="buttonContainer">
+        <div class="button-box" id="button1" onclick="openMirror1()">
+            <img src="mirror.svg">
+        </div>
+        <div class="button-box" id="button2" onclick="openLoop1()">
+            <img src="loop.svg">
+        </div>
+        <div class="button-box" id="button3" onclick="openTimer()">
+            <img src="timer.svg">
+        </div>
+        <div class="button-box" id="button4" onclick="openSpeed1()">
+            <img src="speed.svg">
+        </div>
+    </div>
+
+    <div class="mirror1" id="mirrorScreen1">
+    <div class="blackscreen">
+    </div>
+    <div class="backButton" id="subBack" onclick="backToMain()">
+        <img src="back_button.svg">
+    </div>
+    <div class="info-container">
+        <video id="mirrorInfo" playsinline muted>
+            <source src="mirror_info.webm" type="video/webm">
+        </video>
+    </div>
+    </div>
+
+    <div class="mirror2" id="mirrorScreen2">
+        <video id="mirrorVideo" playsinline>
+        <source src="lovedive_mirror.mp4" type="video/mp4">
+        </video>
+        <div class="backButton" id="subBack" onclick="backToMain()">
+            <img src="back_button.svg">
+        </div>
+        <div class="mirrorText">
+            <img src="mirrortext.svg">
+        </div>
+    </div>
+
+    <div class="loop1" id="loopScreen1">
+        <div class="bluredImg">
+        <img src="loop_img.png">
+        </div>
+        <div class="blackscreen">
+        </div>
+        <div class="backButton" id="subBack" onclick="backToMain()">
+            <img src="back_button.svg">
+        </div>
+        <div class="loopText">
+            <img src="loop_text.svg">
+        </div>
+        <div class="arrow-container">
+        <div class="arrowL">
+            <img src="arrowL.gif">
+        </div>
+        <div class="arrowR">
+            <img src="arrowR.gif">
+        </div>
+        </div>
+        <div class="slider-container">
+            <input type="range" id="input-left" min="0" max="100" value="0" onchange="openLoop2()">
+            <input type="range" id="input-right" min="0" max="100" value="100" onchange="openLoop2()">
+                <div class="slider">
+                    <div class="track"></div>
+                    <div class="range"></div>
+                    <div class="pointL">
+                        <img src="pointL.svg">
+                    </div>
+                    <div class="pointR">
+                        <img src="pointR.svg">
+                    </div>
+                    <div class="thumb left">
+                        <img src="drag_L.svg">
+                    </div>
+                    <div class="thumb right">
+                        <img src="drag_R.svg">
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="loop2" id="loopScreen2">
+        <video id="loopVideo" playsinline>
+            <source src="lovedive_loop.mp4" type="video/mp4">
+        </video>
+        <div class="loopText">
+            <img src="loop_text2.svg">
+        </div>
+        <div class="backButton" id="subBack" onclick="backToMain()">
+            <img src="back_button.svg">
+        </div>
+    </div>
+
+    <div class="timer" id="timerScreen">
+        <video id="timerVideo" playsinline>
+        <source src="lovedive_timer.mp4" type="video/mp4">
+        </video>
+        <div class="timerText">
+        <img src="timer_text.svg">
+        </div>
+        <div class="backButton" id="subBack" onclick="backToMain()">
+            <img src="back_button.svg">
+        </div>
+    </div>
+
+    <div class="speed1" id="speedScreen1">
+        <div class="blackscreen">
+        </div>
+        <div class="backButton" id="subBack" onclick="backToMain()">
+            <img src="back_button.svg">
+        </div>
+        <div class="speedText">
+            <img src="speedtext1.svg">
+        </div>
+        <div class="speed-container">
+            <input type="range" id="speed_range" min="1" max="20" value="10" step="1">
+                <div class="speedSlider">
+                    <div class="track"></div>
+                    <div class="thumb">
+                        <img src="speed_box.svg">
+                        <p id="speedValueText">1.0x</p>
+                    </div>
+                </div>
+        </div>
+        <div class="speedButton" onclick="openSpeed2()">
+            <img src="speed_start.svg">
+        </div>
+    </div>
+
+    <div class="speed2" id="speedScreen2">
+        <div class="backButton" id="subBack" onclick="backToMain()">
+            <img src="back_button.svg">
+        </div>
+        <video id="speedVideo" playsinline >
+        <source src="lovedive_speed.mp4" type="video/mp4">
+        </video>
+        <div class="speedText">
+            <img src="speedtext2.svg">
+        </div>
+    </div>
+
+</body>
+
+<script type="text/javascript">
+var playMirror1 = document.getElementById("mirrorScreen1");
+var playMirror2 = document.getElementById("mirrorScreen2");
+var playLoop1 = document.getElementById("loopScreen1");
+var playLoop2 = document.getElementById("loopScreen2");
+var playTimer = document.getElementById("timerScreen");
+var playSpeed1 = document.getElementById("speedScreen1");
+var playSpeed2 = document.getElementById("speedScreen2");
+var mirrorVideo = document.getElementById("mirrorVideo");
+var timerVideo = document.getElementById("timerVideo")
+var mainVideo = document.getElementById("dance-video");
+var mainButtons = document.getElementById("buttonContainer");
+var mainText = document.getElementsByClassName(".guideText");
+var cameraButton = document.getElementById("camera");
+var mainBackButton = document.getElementById("mainBack");
+var subBackButton = document.getElementById("subBack");
+
+function backToMain(){
+location.reload();
+}
+
+
+function openMirror1(){
+playMirror1.style.display="block";
+mainVideo.pause();
+document.getElementById("mirrorInfo").play();
+mainButtons.style.display="none";
+mainText.style.display="none";
+cameraButton.style.display="none";
+mainBackButton.style.display="none";
+}
+
+document.getElementById("mirrorInfo").addEventListener('ended',function() 
+    {playMirror1.style.display="none";
+     mirrorVideo.play();
+     playMirror2.style.display="block";
+  })
+
+document.getElementById("mirrorVideo").addEventListener('ended',function() 
+    {playMirror2.style.display="none";
+    mainVideo.play();
+    mainButtons.style.display="flex";
+    mainText.style.display="block";
+    cameraButton.style.display="block";
+    mainBackButton.style.display="block";})
+
+
+function openLoop1(){
+playLoop1.style.display="block";
+mainButtons.style.display="none";
+mainVideo.pause();
+mainText.style.display="none";
+cameraButton.style.display="none";
+mainBackButton.style.display="none";
+};
+
+const inputLeft = document.getElementById("input-left");
+const inputRight = document.getElementById("input-right");
+
+const thumbLeft = document.querySelector(".slider > .thumb.left");
+const thumbRight = document.querySelector(".slider > .thumb.right");
+const range = document.querySelector(".slider > .range");
+
+const setLeftValue = () => {
+const _this = inputLeft;
+const [min, max] = [parseInt(_this.min), parseInt(_this.max)];
+  
+_this.value = Math.min(parseInt(_this.value), parseInt(30));
+  
+const percent = ((_this.value - min) / (max - min)) * 100;
+thumbLeft.style.left = percent + "%";
+range.style.left = percent + "%";
+};
+
+const setRightValue = () => {
+    const _this = inputRight;
+    const [min, max] = [parseInt(_this.min), parseInt(_this.max)];
+
+_this.value = Math.max(parseInt(_this.value), parseInt(70));
+  
+const percent = ((_this.value - min) / (max - min)) * 100;
+  thumbRight.style.right = 100 - percent + "%";
+  range.style.right = 100 - percent + "%";
+};
+
+inputLeft.addEventListener("input", setLeftValue);
+inputRight.addEventListener("input", setRightValue);
+
+function openLoop2(){
+if(thumbLeft.style.left === '30%' && thumbRight.style.right === '30%'){
+    inputLeft.value=0;
+    inputRight.value=100;
+    thumbLeft.style.left = "0%";
+    range.style.left = "0%";
+    thumbRight.style.right = "0%";
+    range.style.right = "0%";
+    document.getElementById("loopScreen1").style.display="none";
+    document.getElementById("loopScreen2").style.display="block";
+    document.getElementById("loopVideo").play();
+};
+}
+
+document.getElementById("loopVideo").addEventListener('ended',function() 
+    {document.getElementById("loopScreen2").style.display="none";
+    mainVideo.play();
+    mainButtons.style.display="flex";
+    mainText.style.display="block";
+    cameraButton.style.display="block";
+    mainBackButton.style.display="block";})
+
+function openTimer(){
+playTimer.style.display="block";
+mainButtons.style.display="none";
+mainVideo.pause();
+timerVideo.play();
+mainText.style.display="none";
+cameraButton.style.display="none";
+mainBackButton.style.display="none";
+}
+
+timerVideo.addEventListener('ended',function() 
+    {document.getElementById("timerScreen").style.display="none";
+    mainVideo.play();
+    mainButtons.style.display="flex";
+    mainText.style.display="block";
+    cameraButton.style.display="block";
+    mainBackButton.style.display="block";})
+
+function openSpeed1(){
+playSpeed1.style.display="block";
+mainButtons.style.display="none";
+mainVideo.pause();
+mainText.style.display="none";
+cameraButton.style.display="none";
+mainBackButton.style.display="none";
+};
+
+function openSpeed2(){
+playSpeed1.style.display="none";
+playSpeed2.style.display="block";
+document.getElementById("speedVideo").play();
+};
+
+document.getElementById("speedVideo").addEventListener('ended',function() 
+    {playSpeed2.style.display="none";
+    mainVideo.play();
+    mainButtons.style.display="flex";
+    mainText.style.display="block";
+    cameraButton.style.display="block";
+    mainBackButton.style.display="block";})
+
+const inputSpeed = document.getElementById("speed_range");
+const thumbSpeed = document.querySelector(".speedSlider > .thumb");
+const speedText = document.getElementById("speedValueText");
+
+const setSpeedValue = () => {
+    const _this = inputSpeed;
+    const [min, max] = [parseInt(_this.min), parseInt(_this.max)];
+    _this.value = Math.max(parseInt(_this.value), parseInt(5));
+    const speedPercent = ((_this.value - min) / (max - min)) * 100;
+    thumbSpeed.style.left = speedPercent + "%";
+    let speedValue = inputSpeed.value;
+    speedText.textContent = (speedValue / 10).toFixed(1) + "x";
+    document.getElementById("speedVideo").playbackRate = (speedValue / 10);
+};
+
+inputSpeed.addEventListener("input", setSpeedValue);
+
+</script>
+</html>

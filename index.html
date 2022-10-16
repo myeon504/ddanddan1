@@ -1,0 +1,349 @@
+<html>
+<head>
+    <title>
+        DDANDDAN
+    </title>
+    <style>
+        body, html{margin: 0; padding: 0;}
+        body{background-image: url(item1.jpg);
+            transition-duration: 500ms;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            overflow: hidden;
+        position: relative;}
+        header{background-color: black;
+        z-index: 5;
+        height: 15vh;
+        width: 100vw;
+        border-radius: 0px 0px 30px 30px;
+        position: relative;}
+        .headerContainer{
+            display: flex;
+            position: relative;
+            width: calc(100vw - 160px);
+            height: 90%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .logo{
+            position: absolute;
+            transform: translateY(-50%);
+            top: 50%;
+            left: 0%;
+            width: 200px;
+            height: auto;}
+        .headerText{
+            position:absolute;
+            transform: translate(0%, -50%);
+            top: 50%;
+            right: 0%;
+            width: 600px;
+        }
+        .background{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top : 50%;
+            overflow: hidden;
+            background-color: rgba(51, 51, 51, 0.55);
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(50px);
+        }
+        .startButton{
+            position: absolute;
+            border-radius: 30px 30px 0px 0px;
+            transform: translate(-50%, 0%);
+            left: 50%;
+            bottom: 0%;
+            background-color: #91ff24;
+            width: 600px;
+            height: 200px;
+        }
+        .startButton img{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top : 50%;
+            width: 45%;
+        }
+        .itemContainer{
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            display: flex;
+            overflow: hidden;
+            }
+
+        .item{
+            overflow: hidden;
+            position: relative;
+            transform: translate(0%, -50%);
+            top : 50%;
+            margin-left: 60px;
+            margin-right: 60px;
+            width: 18vw;
+            min-width: 260px;
+            height: 45vh;
+            transition-duration: 500ms;
+            border-radius: 10px 10px 10px 10px;
+            background-color : rgba(51, 51, 51, 0.6);
+        }
+        .itemSelected{
+            overflow: hidden;
+            position: relative;
+            transform: translate(0%, -50%);
+            top : 50%;
+            margin-left: 40px;
+            margin-right: 40px;
+            min-width: 300px;
+            width: 20vw;
+            height: 50vh;
+            transition-duration: 500ms;
+            background-color : rgba(51, 51, 51, 0.6);
+            border-radius: 15px 15px 15px 15px;
+            border-color: #91ff24;
+            border-width: 6px;
+            border-style: solid;
+            transition-duration: 500ms;
+        }
+        .item img{
+            position: relative;
+            width: 100%;
+            border-radius: 10px 10px 0px 0px;
+            margin-bottom: 30px;
+        }
+        .itemSelected img{
+            position: relative;
+            width: 100%;
+            border-radius: 10px 10px 0px 0px;
+            margin-bottom: 30px;
+        }
+
+        .itemTitle{
+            margin-top: 0;
+            margin-left: 30px;
+            margin-bottom: 20px;
+            color: #e6e6e6;
+            height: 40px;
+            transition-duration: 500ms;
+        }
+        .itemTitleSelected{
+            margin-top: 0;
+            margin-left: 30px;
+            margin-bottom: 20px;
+            color: #e6e6e6;
+            height: 50px;
+            transition-duration: 500ms;
+        }
+        .itemTitle img{
+            height: 100%;
+            width: auto;
+        }
+        .itemTitleSelected img{
+            height: 100%;
+            width: auto;
+        }
+        .itemArtist{
+            height: 30px;
+            margin-top: 0px;
+            margin-left: 30px;
+            color: #cccccc;
+            transition-duration: 500ms;
+        }
+        .itemArtistSelected{
+            height: 35px;
+            margin-top: 0px;
+            margin-left: 30px;
+            color: #cccccc;
+            transition-duration: 500ms;
+        }
+        
+        .itemArtist img{
+        height: 100%;
+        width: auto;
+        }
+
+        .itemArtistSelected img{
+        height: 100%;
+        width: auto;
+        }
+
+        .fadeOut{
+            background-color: black;
+            opacity: 0;
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            z-index: -1;
+        }
+
+        input[type="radio"]{
+        display: none;
+        }
+    </style>
+</head> 
+<body id="bgImg">
+    <header>
+        <div class="headerContainer">
+            <div class="logo">
+                <img src="ddanddan_logo.svg">
+            </div>
+            <div class="headerText">
+                <img src="header_text.svg">
+            </div>
+        </div>
+    </header>
+    
+    <div class="background"></div>
+
+    <div class="itemContainer">
+
+        <input type="radio" name="select" value="item1" checked>
+            <label for="item1" onclick="checkedItem1()">
+                <div id="item1" class="itemSelected">
+                    <img src="item1.jpg">
+                    <div id="title1" class="itemTitleSelected">
+                        <img src="title1.svg">       
+                    </div>
+                    <div id="artist1" class="itemArtistSelected">
+                        <img src="artist1.svg">
+                    </div>
+                </div>
+            </label>
+
+        <input type="radio" name="select" value="item2">
+            <label for="item2" onclick="checkedItem2()">
+                <div id="item2" class="item">
+                    <img src="item2.jpg">
+                    <div id="title2" class="itemTitle">
+                        <img src="title2.svg">
+                    </div>
+                    <div id="artist2" class="itemArtist">
+                        <img src="artist2.svg">
+                    </div>
+                </div>
+            </label>
+
+        <input type="radio" name="select" value="item3">
+            <label for="item3" onclick="checkedItem3()">
+                <div id="item3" class="item">
+                    <img src="item3.jpg">
+                    <div id="title3" class="itemTitle">
+                        <img src="title3.svg">
+                    </div>
+                    <div id="artist3" class="itemArtist">
+                        <img src="artist3.svg">
+                    </div>
+                </div>
+            </label>
+
+    </div>
+    
+    <div class="startButton" id="startButton" onclick="clickStart()">
+        <img src="start.svg">
+    </div>
+
+    <div id="fadeOut" class="fadeOut"></div>
+
+</body>
+
+<script>
+var a = "song1.html"
+var audio1 = new Audio('lovedive.mp3');
+var audio2 = new Audio('hypeboy.mp3');
+var audio3 = new Audio('pinkvenom.mp3');
+var audioStart = new Audio('start1.mp3');
+
+    function checkedItem1(){
+    document.getElementById("item1").classList.replace('item', 'itemSelected');
+    document.getElementById("item2").classList.replace('itemSelected', 'item');
+    document.getElementById("item3").classList.replace('itemSelected', 'item');
+
+    document.getElementById("title1").classList.replace('itemTitle', 'itemTitleSelected');
+    document.getElementById("title2").classList.replace('itemTitleSelected', 'itemTitle');
+    document.getElementById("title3").classList.replace('itemTitleSelected', 'itemTitle');
+
+    document.getElementById("artist1").classList.replace('itemArtist', 'itemArtistSelected');
+    document.getElementById("artist2").classList.replace('itemArtistSelected', 'itemArtist');
+    document.getElementById("artist3").classList.replace('itemArtistSelected', 'itemArtist');
+    
+    document.getElementById("bgImg").style.backgroundImage="url(item1.jpg)";
+    a = "song1.html"
+    audio1.play();
+    audio2.pause();
+    audio3.pause();
+    audio2.currentTime = 0;
+    audio3.currentTime = 0;
+    }
+
+    function checkedItem2(){
+    document.getElementById("item2").classList.replace('item', 'itemSelected');
+    document.getElementById("item1").classList.replace('itemSelected', 'item');
+    document.getElementById("item3").classList.replace('itemSelected', 'item');
+
+    document.getElementById("title2").classList.replace('itemTitle', 'itemTitleSelected');
+    document.getElementById("title1").classList.replace('itemTitleSelected', 'itemTitle');
+    document.getElementById("title3").classList.replace('itemTitleSelected', 'itemTitle');
+
+    document.getElementById("artist2").classList.replace('itemArtist', 'itemArtistSelected');
+    document.getElementById("artist1").classList.replace('itemArtistSelected', 'itemArtist');
+    document.getElementById("artist3").classList.replace('itemArtistSelected', 'itemArtist');
+
+    document.getElementById("bgImg").style.backgroundImage="url(item2.jpg)";
+    a = "song2.html"
+    audio2.play()
+    audio1.pause();
+    audio3.pause();
+    audio1.currentTime = 0;
+    audio3.currentTime = 0;
+    }
+
+    function checkedItem3(){
+    document.getElementById("item3").classList.replace('item', 'itemSelected');
+    document.getElementById("item1").classList.replace('itemSelected', 'item');
+    document.getElementById("item2").classList.replace('itemSelected', 'item');
+
+    document.getElementById("title3").classList.replace('itemTitle', 'itemTitleSelected');
+    document.getElementById("title1").classList.replace('itemTitleSelected', 'itemTitle');
+    document.getElementById("title2").classList.replace('itemTitleSelected', 'itemTitle');
+
+    document.getElementById("artist3").classList.replace('itemArtist', 'itemArtistSelected');
+    document.getElementById("artist1").classList.replace('itemArtistSelected', 'itemArtist');
+    document.getElementById("artist2").classList.replace('itemArtistSelected', 'itemArtist');
+
+    document.getElementById("bgImg").style.backgroundImage="url(item3.jpg)";
+    a = "song3.html"
+    audio3.play()
+    audio1.pause();
+    audio2.pause();
+    audio1.currentTime = 0;
+    audio2.currentTime = 0;
+    }
+
+    function clickStart(){
+        audioStart.play();
+    
+        document.getElementById("fadeOut").style.zIndex = "10";
+
+        document.getElementById("fadeOut").animate(
+            {opacity : [0, 100]} 
+        , 2000);
+
+        setInterval(function(){
+            audio1.volume *= 0.9;
+            audio2.volume *= 0.9;
+            audio3.volume *= 0.9;}, 70);
+
+        setTimeout(function(){
+            window.location.href = a;
+            }, 1800);    
+        }
+    
+</script>
+</html>
